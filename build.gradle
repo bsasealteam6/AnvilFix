@@ -1,4 +1,4 @@
-import com.modrinth.minotaur.TaskModrinthUpload
+// import com.modrinth.minotaur.TaskModrinthUpload
 
 import java.nio.charset.StandardCharsets
 import java.time.Year
@@ -6,9 +6,9 @@ import java.time.Year
 plugins {
     id "java-library"
     id "maven-publish"
-    id "fabric-loom" version "0.12-SNAPSHOT"
+    id "fabric-loom" version "1.2-SNAPSHOT"
     id "org.cadixdev.licenser" version "0.6.1"
-    id "com.modrinth.minotaur" version "1.1.0"
+    id "com.modrinth.minotaur" version "2.+"
     id "com.matthewprenger.cursegradle" version "1.4.0"
 }
 
@@ -34,6 +34,12 @@ java {
 repositories {
     mavenCentral()
     maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
+    maven {
         name = "OnyxStudios"
         url = "https://maven.onyxstudios.dev"
     }
@@ -56,9 +62,7 @@ dependencies {
     // FIXME not updated yet
     //modImplementation "dev.upcraft:Mesh-API:${project.mesh_version}"
     //modRuntimeOnly "dev.upcraft:Mesh:${project.mesh_version}"
-    modImplementation ("me.shedaniel.cloth:cloth-config-fabric:6.2.57") {
-        exclude group: "net.fabricmc.fabric-api"
-    }
+    modImplementation "curse.maven:cloth-config-348521:4573053"
 
     modImplementation include(fabricApi.module("fabric-resource-loader-v0", project.fabric_version))
     modImplementation "com.terraformersmc:modmenu:${modmenu_version}"
@@ -143,20 +147,20 @@ curseforge {
     }
 }
 
-task publishToModrinth(type: TaskModrinthUpload, dependsOn: assemble) {
-    if (ENV.MODRINTH_TOKEN) {
-        token = ENV.MODRINTH_TOKEN
-    }
-    projectId = project.modrinth_id
-    uploadFile = remapJar
-    versionNumber = ENV.TAG ?: version
-    versionName = versionNumber // need this here because the Modrinth API doesn't do that by default
-    releaseType = isPreviewBuild ? ((ENV.TAG && ENV.TAG.contains("-beta")) ? "beta" : "alpha") : "release"
-    "${project.modrinth_game_versions}".split(",").each {
-        addGameVersion(it)
-    }
-    addLoader("fabric")
-}
+// task publishToModrinth(type: TaskModrinthUpload, dependsOn: assemble) {
+//     if (ENV.MODRINTH_TOKEN) {
+//         token = ENV.MODRINTH_TOKEN
+//     }
+//     projectId = project.modrinth_id
+//     uploadFile = remapJar
+//     versionNumber = ENV.TAG ?: version
+//     versionName = versionNumber // need this here because the Modrinth API doesn't do that by default
+//     releaseType = isPreviewBuild ? ((ENV.TAG && ENV.TAG.contains("-beta")) ? "beta" : "alpha") : "release"
+//     "${project.modrinth_game_versions}".split(",").each {
+//         addGameVersion(it)
+//     }
+//     addLoader("fabric")
+// }
 
 if (ENV.MODRINTH_TOKEN) {
     tasks.publish.dependsOn(publishToModrinth)
