@@ -7,4 +7,4 @@ also has an option for preventing anvils from taking damage when being used
 
 ### Curseforge:
 
-[UpcraftLP/AnvilFix](https://www.curseforge.com/minecraft/mc-mods/anvil-fix "UpcraftLP/AnvilFix on CurseForge")[![CurseForge](http://cf.way2muchnoise.eu/full_305480_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/anvil-fix "UpcraftLP/AnvilFix on CurseForge")
+[bsasealteam6/Anvil Fix Reborn](https://www.curseforge.com/minecraft/mc-mods/anvilfixreborn "bsasealteam6/Anvil Fix Reborn on CurseForge")[![CurseForge](http://cf.way2muchnoise.eu/full_814868_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/anvilfixreborn "bsasealteam6/Anvil Fix Reborn on CurseForge")
